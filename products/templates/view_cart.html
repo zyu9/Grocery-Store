@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+     <h1>Your cart:</h1>
+
+     <div class="list-group">
+          {%  for item in items %}
+          <div class="list-group-item">
+               <div class="row">
+                    <div class="col-md-10">
+                         <p>{{item.name}}</p>
+                         <p>{{item.price}}</p>
+                    </div>
+
+                    <div class="col-md-2">
+                         <p>Quantity: {{item.quantity}}</p>
+                    </div>
+               </div>
+          </div>
+          {% endfor %}
+     </div>
+
+     <p>Total price: {{total}}</p>
+
+     <br /><br />
+     <a href="order-placed" class="btn btn-primary">Place Order</a>
+{% endblock %}

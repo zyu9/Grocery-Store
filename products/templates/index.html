@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+<div class="col-sm-1">
+    <a href="view-cart">
+        <img src="https://img.icons8.com/pastel-glyph/64/000000/shopping-cart--v2.png" width="48" height="48"/
+    </a>
+    <p>{{ cart_size }}</p>
+ </div>
+
+<div class="col-sm-1">
+    <a href="new">
+        <img src="https://img.icons8.com/ios/50/000000/add.png" width="48" height="48"/>
+    </a>
+ </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <form action="#" method="get">
+            <input type="text" name="search-entry">
+            <input type="submit" class="btn btn-primary" name="search-submit" value="Search">
+        </form>
+    </div>
+
+    <br /><br />
+
+    <div>
+        <h1>Products</h1>
+        <div class="row">
+            {%  for product in products %}
+              <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ product.image_url }}" class="card-img-top" alt="...">
+                         <div class="card-body">
+                             <form action="#" method="get">
+                                <h5 class="card-title">{{ product.name }}</h5>
+                                <p class="card-text">{{ product.price }}</p>
+
+                                 <div class="card">
+                                    <input type="number" name="product-count" value="1" class="form-control">
+                                 </div>
+
+                                 <br /><br />
+
+                                 <div>
+                                     <input type="submit" name="add-cart" value="Add to Cart" class="btn btn-primary">
+                                 </div>
+
+                                 <!--If anyone has a better way to do this... -->
+                                 <div style="display:none;">
+                                     <input type="text" name="product-name" value={{ product.name }}>
+                                     <input type="text" name="product-price" value={{ product.price }}>
+                                 </div>
+                             </form>
+                         </div>
+                </div>
+                  <br />
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+{% endblock %}
